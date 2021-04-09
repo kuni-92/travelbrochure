@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Brochure</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+</head>
+<body>
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <p class="title">
+                Travel Brochure
+            </p>
+            <p class="subtitle">
+                Help your happy travels.
+            </p>
+        </div>
+    </section>
+    <section class="section">
+        <div id="app" class="container">
+            <div v-for="(dest, index) in destinations" class="card mb-5">
+                <header class="card-header">
+                    <div class="select mx-1 my-1">
+                        <select v-model="dest.way">
+                            <option>walking</option>
+                            <option>driving</option>
+                            <option>bicycling</option>
+                            <option>transit</option>
+                        </select>
+                    </div>
+                    <p class="card-header-title">{{dest.place}}</p>
+                    <button v-on:click="deleteCard(index)" class="delete" aria-label="close"></button>
+                </header>
+                <div class="card-content">
+                    <div class="content">
+                        {{dest.memo}}
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a v-bind:href="getSearchURL(dest.place)" target="_blank" rel="noopener" class="card-footer-item">Map</a>
+                    <a v-bind:href="getDirectionURL(dest.place, dest.way)"  target="_blank" rel="noopener"class="card-footer-item">Navigate</a>
+                </div>
+            </div>
+            <button v-on:click="showDestModal" class="button is-info">Add destination</button>
+            <!-- Add modal -->
+            <div v-bind:class="destModalClass">
+                <div v-on:click="closeDestModal" class="modal-background"></div>
+                <div class="modal-card">
+                    <header class="modal-card-head">
+                        <p class="modal-card-title">Add destination</p>
+                        <button v-on:click="closeDestModal" class="delete" aria-label="close"></button>
+                    </header>
+                    <section class="modal-card-body">
+                        <!-- Content ... -->
+                        <div class="field">
+                            <label class="label">How to?</label>
+                            <div class="control mb-5">
+                                <div class="select">
+                                    <select v-model="newWay">
+                                        <option>walking</option>
+                                        <option>driving</option>
+                                        <option>bicycling</option>
+                                        <option>transit</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <label class="label">Destination</label>
+                            <div class="control mb-5">
+                                <input v-model="newDestination" class="input" type="text" placeholder="Destination">
+                            </div>
+                            <label class="label">Memo</label>
+                            <div class="control">
+                                <textarea v-model="newMemo" class="textarea" placeholder="Memo"></textarea>
+                            </div>
+                        </div>
+                    </section>
+                    <footer class="modal-card-foot">
+                        <button v-on:click="addDestination" class="button is-success">Add</button>
+                        <button v-on:click="closeDestModal" class="button">Cancel</button>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>
