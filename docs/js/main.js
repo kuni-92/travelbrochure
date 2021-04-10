@@ -47,6 +47,9 @@ var app = new Vue ({
     },
     methods: {
         addDestination: function() {
+            if(this.newWay == '' || this.newDestination == '') {
+                return;
+            }
 
             try {
                 this.destinations.push({
