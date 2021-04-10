@@ -30,7 +30,7 @@
                             <option>transit</option>
                         </select>
                     </div>
-                    <p class="card-header-title">{{dest.place}}</p>
+                    <p class="card-header-title is-size-2">{{dest.place}}</p>
                     <button v-on:click="deleteCard(index)" class="delete" aria-label="close"></button>
                 </header>
                 <div class="card-content">
@@ -43,7 +43,7 @@
                     <a v-bind:href="getDirectionURL(dest.place, dest.way)"  target="_blank" rel="noopener"class="card-footer-item">Navigate</a>
                 </div>
             </div>
-            <button v-on:click="showDestModal" class="button is-info">Add destination</button>
+            <button v-on:click="showDestModal" class="button is-info is-pulled-right">Add</button>
             <!-- Add modal -->
             <div v-bind:class="destModalClass">
                 <div v-on:click="closeDestModal" class="modal-background"></div>
@@ -68,11 +68,11 @@
                             </div>
                             <label class="label">Destination</label>
                             <div class="control mb-5">
-                                <input v-model="newDestination" class="input" type="text" placeholder="Destination">
+                                <input v-model="newDestination" class="input" type="text" placeholder="TokyoStation, TokyoTower etc...">
                             </div>
                             <label class="label">Memo</label>
                             <div class="control">
-                                <textarea v-model="newMemo" class="textarea" placeholder="Memo"></textarea>
+                                <textarea v-model="newMemo" class="textarea" placeholder="Open: 9:30 am Close: 10:30 pm etc..."></textarea>
                             </div>
                         </div>
                     </section>
