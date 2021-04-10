@@ -34,9 +34,7 @@
                     <button v-on:click="deleteCard(index)" class="delete" aria-label="close"></button>
                 </header>
                 <div class="card-content">
-                    <div class="content">
-                        {{dest.memo}}
-                    </div>
+                    <div style="white-space: pre;" class="content">{{dest.memo}}</div>
                 </div>
                 <div class="card-footer">
                     <a v-bind:href="getSearchURL(dest.place)" target="_blank" rel="noopener" class="card-footer-item">Map</a>
