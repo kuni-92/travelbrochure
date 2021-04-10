@@ -21,8 +21,8 @@
     <section class="section">
         <div id="app" class="container">
             <div v-for="(dest, index) in destinations" class="card mb-5">
-                <header class="card-header">
-                    <div class="select mx-1 my-1">
+                <header class="card-header has-background-info">
+                    <div class="select is-info mx-1 my-1">
                         <select v-model="dest.way">
                             <option>walking</option>
                             <option>driving</option>
@@ -30,7 +30,7 @@
                             <option>transit</option>
                         </select>
                     </div>
-                    <p class="card-header-title">{{dest.place}}</p>
+                    <p class="card-header-title has-text-light">{{dest.place}}</p>
                     <button v-on:click="deleteCard(index)" class="delete" aria-label="close"></button>
                 </header>
                 <div class="card-content">
@@ -46,14 +46,14 @@
             <div v-bind:class="destModalClass">
                 <div v-on:click="closeDestModal" class="modal-background"></div>
                 <div class="modal-card">
-                    <header class="modal-card-head">
-                        <p class="modal-card-title">Add destination</p>
+                    <header class="modal-card-head has-background-primary">
+                        <p class="modal-card-title has-text-light">Add destination</p>
                         <button v-on:click="closeDestModal" class="delete" aria-label="close"></button>
                     </header>
                     <section class="modal-card-body">
                         <!-- Content ... -->
                         <div class="field">
-                            <label class="label">How to?</label>
+                            <label class="label">How to? <span class="tag is-danger is-light">required item</span></label>
                             <div class="control mb-5">
                                 <div class="select">
                                     <select v-model="newWay">
@@ -64,7 +64,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <label class="label">Destination</label>
+                            <label class="label">Destination <span class="tag is-danger is-light">required item</span></label>
                             <div class="control mb-5">
                                 <input v-model="newDestination" class="input" type="text" placeholder="TokyoStation, TokyoTower etc...">
                             </div>
@@ -74,8 +74,8 @@
                             </div>
                         </div>
                     </section>
-                    <footer class="modal-card-foot">
-                        <button v-on:click="addDestination" class="button is-success">Add</button>
+                    <footer class="modal-card-foot buttons has-addons is-right">
+                        <button v-on:click="addDestination" class="button is-info">Add</button>
                         <button v-on:click="closeDestModal" class="button">Cancel</button>
                     </footer>
                 </div>
