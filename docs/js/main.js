@@ -8,6 +8,19 @@ var app = new Vue ({
         destinations: [],
     },
     mounted() {
+        if(localStorage.destinations) {
+            try {
+                this.destinations = JSON.parse(localStorage.getItem('destinations'));
+            } catch(e) {
+                localStorage.removeItem('destinations');
+            }
+        }
+    },
+    watch: {
+        destinations(dest) {
+            const parsed = JSON.stringify(dest);
+            localStorage.setItem('destinations', parsed);
+        }
     },
     computed: {
         getSearchURL: function() {
@@ -34,11 +47,17 @@ var app = new Vue ({
     },
     methods: {
         addDestination: function() {
-            this.destinations.push({
-                way: this.newWay,
-                place: this.newDestination,
-                memo: this.newMemo,
-            });
+
+            try {
+                this.destinations.push({
+                    way: this.newWay,
+                    place: this.newDestination,
+                    memo: this.newMemo,
+                });
+            } catch(e) {
+                this.destinations = [];
+            }
+
             this.newWay = '';
             this.newDestination = '';
             this.newMemo = '';
