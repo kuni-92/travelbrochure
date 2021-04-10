@@ -57,13 +57,15 @@ var app = new Vue ({
             } catch(e) {
                 this.destinations = [];
             }
-
+            this.closeDestModal();
+        },
+        clearModal: function() {
             this.newWay = '';
             this.newDestination = '';
             this.newMemo = '';
-            this.closeDestModal();
         },
         closeDestModal: function() {
+            this.clearModal();
             this.destModalClass = "modal";
         },
         showDestModal: function() {
